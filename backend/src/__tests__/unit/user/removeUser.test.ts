@@ -16,4 +16,10 @@ describe('Remove a user', () => {
 
     expect(result).toBe(newUser.id);
   });
+
+  it('should throw a error if user not exists', async () => {
+    const result = userService.remove('123');
+
+    expect(result).rejects.toThrowError(new Error('User not found'));
+  });
 });
