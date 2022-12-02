@@ -38,4 +38,15 @@ describe('create User', () => {
 
     expect(result).rejects.toThrow();
   });
+
+  it('should not create a user if confirmPassword is unlike of password.', async () => {
+    const result = userService.create({
+      username: 'txtdbr',
+      email: 'test@test.com',
+      password: '12345',
+      confirmPassword: '12345',
+    });
+
+    expect(result).rejects.toThrow();
+  });
 });
