@@ -25,6 +25,10 @@ export class UserService {
       })
       .parse(data);
 
+    const userFromDB = await this.userRepository.findByEmail(email);
+
+    if (userFromDB) throw new CustomException('User already exists');
+
     const user = await this.userRepository.create({
       username,
       email,
