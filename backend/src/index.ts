@@ -1,5 +1,7 @@
+import 'express-async-errors';
+
 import express, { NextFunction, Request, Response } from 'express';
-import { CustomException } from './app/exceptions/CustomException';
+import { CustomException } from './exceptions/CustomException';
 import { ZodError } from 'zod';
 
 const app = express();
@@ -21,7 +23,7 @@ app.use(
     }
 
     if (error instanceof ZodError) {
-      return res.status(400).json(error);
+      return res.status(400).json('oi');
     }
 
     console.error(error.message || error);
