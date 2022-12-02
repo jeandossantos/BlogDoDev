@@ -46,4 +46,10 @@ export class UserService {
       token,
     };
   }
+
+  async remove(id: string) {
+    const user = await this.userRepository.remove(id);
+
+    return user;
+  }
 }

@@ -1,4 +1,3 @@
-import { ZodError } from 'zod';
 import { UserService } from '../../../app/user/UserService';
 import { CustomException } from '../../../exceptions/CustomException';
 import { UserRepoInMemory } from '../../../inMemory/UserRepoInMemory';
