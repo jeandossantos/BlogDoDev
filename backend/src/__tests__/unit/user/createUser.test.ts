@@ -27,4 +27,15 @@ describe('create User', () => {
 
     expect(result).rejects.toThrow();
   });
+
+  it('should not create a user with a password lessen than 6 characters.', async () => {
+    const result = userService.create({
+      username: 'txtdbr',
+      email: 'test@test.com',
+      password: '12345',
+      confirmPassword: '123456',
+    });
+
+    expect(result).rejects.toThrow();
+  });
 });
