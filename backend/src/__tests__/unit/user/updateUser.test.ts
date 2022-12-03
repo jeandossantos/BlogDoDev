@@ -16,4 +16,17 @@ describe('Update a User', () => {
 
     expect(result).toBe(undefined);
   });
+
+  it('should not update a user with username less than 2 characters', async () => {
+    const user = await userService.create({
+      username: 'teste2UpdateUser',
+      email: 'testeUpdate2User@teste.com',
+      password: 'testeUpdateUserPassword',
+      confirmPassword: 'testeUpdateUserPassword',
+    });
+
+    const result = userService.update(user.id!, 'A');
+
+    expect(result).rejects.toThrow();
+  });
 });
