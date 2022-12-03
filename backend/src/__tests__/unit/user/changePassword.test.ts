@@ -1,3 +1,4 @@
+import { ZodError } from 'zod';
 import { UserService } from '../../../app/user/UserService';
 import { UserRepoInMemory } from '../../../inMemory/UserRepoInMemory';
 
@@ -21,5 +22,11 @@ describe('Change user password', () => {
     );
 
     expect(result).toBe(undefined);
+  });
+
+  it('should not change user password if the password is less then 6 characters', async () => {
+    const result = userService.changePassword(user.id, '12345');
+
+    await expect(result).rejects.toThrow(ZodError);
   });
 });
