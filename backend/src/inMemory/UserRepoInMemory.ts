@@ -4,6 +4,22 @@ import { randomUUID } from 'crypto';
 const User: IUser[] = [];
 
 export class UserRepoInMemory implements IUserRepository {
+  async update(userId: string, username: string): Promise<void> {
+    User.map((user, index) => {
+      if (user.id === userId) {
+        User[index].username = username;
+      }
+    });
+  }
+
+  async changePassword(userId: string, newPassword: string): Promise<void> {
+    User.map((user, index) => {
+      if (user.id === userId) {
+        User[index].password = newPassword;
+      }
+    });
+  }
+
   async remove(id: string): Promise<string> {
     const user = User.find((user) => user.id === id);
 

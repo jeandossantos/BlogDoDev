@@ -47,6 +47,12 @@ export class UserService {
     };
   }
 
+  async update(userId: string, username: string) {
+    username = z.string().min(2).parse(username);
+
+    await this.userRepository.update(userId, username);
+  }
+
   async remove(id: string) {
     const user = await this.userRepository.remove(id);
 
