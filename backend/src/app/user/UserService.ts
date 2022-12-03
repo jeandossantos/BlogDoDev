@@ -58,4 +58,10 @@ export class UserService {
 
     return user;
   }
+
+  async changePassword(id: string, newPassword: string) {
+    newPassword = z.string().min(6).parse(newPassword);
+
+    await this.userRepository.changePassword(id, newPassword);
+  }
 }
