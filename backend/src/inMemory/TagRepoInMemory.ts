@@ -1,6 +1,13 @@
 import { ITag, ITagRepository } from '../app/tag/ITagRepository';
 import { randomUUID } from 'node:crypto';
+
 export class TagRepoInMemory implements ITagRepository {
+  async findByName(name: string): Promise<ITag | null> {
+    const tag = this.Tag.find((t) => t.name === name);
+
+    return tag || null;
+  }
+
   Tag: ITag[] = [];
 
   async create(name: string): Promise<ITag> {
@@ -9,11 +16,11 @@ export class TagRepoInMemory implements ITagRepository {
       throw new Error(`Tag with name ${name} already exists`);
     }
 
-    const task = { id: crypto.randomUUID(), name };
+    const tag = { id: randomUUID(), name };
 
-    this.Tag.push(task);
+    this.Tag.push(tag);
 
-    return task;
+    return tag;
   }
 
   async find(): Promise<ITag[]> {

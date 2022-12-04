@@ -7,4 +7,5 @@ export interface ITagRepository {
   create(name: string): Promise<ITag>;
   find(): Promise<ITag[]>;
   delete(id: string): Promise<void>;
+  findByName(name: string): Promise<ITag | null>;
 }
