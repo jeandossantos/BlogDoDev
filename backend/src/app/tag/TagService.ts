@@ -24,4 +24,8 @@ export class TagService {
 
     return tags;
   }
+
+  async remove(tagId: string) {
+    await this.TagRepository.delete(tagId);
+  }
 }
