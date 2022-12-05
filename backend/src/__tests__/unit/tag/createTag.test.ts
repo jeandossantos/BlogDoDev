@@ -1,5 +1,6 @@
 import { ZodError } from 'zod';
 import { TagService } from '../../../app/tag/TagService';
+import { CustomException } from '../../../exceptions/CustomException';
 
 import { TagRepoInMemory } from '../../../inMemory/TagRepoInMemory';
 
@@ -12,5 +13,13 @@ describe('Create a Tag', () => {
     expect(tag.name).toEqual('test');
 
     expect(tag.id).toBeDefined();
+  });
+
+  it('should not create a tag if it already exists', async () => {
+    const tag = tagService.create('test');
+
+    await expect(tag).rejects.toThrowError(
+      new CustomException('Tag with name test already exists')
+    );
   });
 });
