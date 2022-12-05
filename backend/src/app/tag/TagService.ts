@@ -1,4 +1,5 @@
 import { ITagRepository } from './ITagRepository';
+import { CustomException } from '../../exceptions/CustomException';
 import { z } from 'zod';
 
 export class TagService {
@@ -10,7 +11,7 @@ export class TagService {
     const tagFromDB = await this.TagRepository.findByName(name);
 
     if (tagFromDB) {
-      throw new Error(`Tag with name ${name} already exists`);
+      throw new CustomException(`Tag with name ${name} already exists`);
     }
 
     const tag = await this.TagRepository.create(name);
