@@ -18,4 +18,10 @@ export class TagService {
 
     return tag;
   }
+
+  async list() {
+    const tags = await this.TagRepository.find();
+
+    return tags;
+  }
 }
