@@ -22,4 +22,10 @@ describe('Create a Tag', () => {
       new CustomException('Tag with name test already exists')
     );
   });
+
+  it('should not create a tag whit name less than 2 characters', async () => {
+    const tag = tagService.create('1');
+
+    await expect(tag).rejects.toThrow(ZodError);
+  });
 });
