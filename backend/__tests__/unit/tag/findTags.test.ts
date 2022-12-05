@@ -1,6 +1,6 @@
-import { TagService } from '../../../app/tag/TagService';
+import { TagService } from '../../../src/app/tag/TagService';
 
-import { TagRepoInMemory } from '../../../inMemory/TagRepoInMemory';
+import { TagRepoInMemory } from '../../../src/inMemory/TagRepoInMemory';
 
 const tagService = new TagService(new TagRepoInMemory());
 

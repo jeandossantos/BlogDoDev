@@ -1,6 +1,6 @@
-import { UserService } from '../../../app/user/UserService';
-import { CustomException } from '../../../exceptions/CustomException';
-import { UserRepoInMemory } from '../../../inMemory/UserRepoInMemory';
+import { UserService } from '../../../src/app/user/UserService';
+import { CustomException } from '../../../src/exceptions/CustomException';
+import { UserRepoInMemory } from '../../../src/inMemory/UserRepoInMemory';
 
 const userService = new UserService(new UserRepoInMemory());
 

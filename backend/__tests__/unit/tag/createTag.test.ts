@@ -1,8 +1,8 @@
 import { ZodError } from 'zod';
-import { TagService } from '../../../app/tag/TagService';
-import { CustomException } from '../../../exceptions/CustomException';
+import { TagService } from '../../../src/app/tag/TagService';
+import { CustomException } from '../../../src/exceptions/CustomException';
 
-import { TagRepoInMemory } from '../../../inMemory/TagRepoInMemory';
+import { TagRepoInMemory } from '../../../src/inMemory/TagRepoInMemory';
 
 const tagService = new TagService(new TagRepoInMemory());
 

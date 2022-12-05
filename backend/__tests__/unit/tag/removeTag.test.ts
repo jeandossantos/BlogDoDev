@@ -1,7 +1,7 @@
-import { ITag } from '../../../app/tag/ITagRepository';
-import { TagService } from '../../../app/tag/TagService';
+import { ITag } from '../../../src/app/tag/ITagRepository';
+import { TagService } from '../../../src/app/tag/TagService';
 
-import { TagRepoInMemory } from '../../../inMemory/TagRepoInMemory';
+import { TagRepoInMemory } from '../../../src/inMemory/TagRepoInMemory';
 
 const tagService = new TagService(new TagRepoInMemory());
 let tag: ITag;

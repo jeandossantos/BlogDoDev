@@ -1,5 +1,5 @@
-import { UserService } from '../../../app/user/UserService';
-import { UserRepoInMemory } from '../../../inMemory/UserRepoInMemory';
+import { UserService } from '../../../src/app/user/UserService';
+import { UserRepoInMemory } from '../../../src/inMemory/UserRepoInMemory';
 
 const userService: UserService = new UserService(new UserRepoInMemory());
 
