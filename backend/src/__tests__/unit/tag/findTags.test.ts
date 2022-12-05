@@ -1,4 +1,3 @@
-import { ZodError } from 'zod';
 import { TagService } from '../../../app/tag/TagService';
 
 import { TagRepoInMemory } from '../../../inMemory/TagRepoInMemory';
