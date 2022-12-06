@@ -11,11 +11,9 @@
 
   - [x] **retorna todas as tags**
 
-- [ ] <b style="color: blue">Deletar tag método</b>
+- [x] <b style="color: blue">Deletar tag método</b>
 
-  - [ ] **tag que tem artigos vinculados não podem ser apagados**
-
-- [ ] <b style="color: blue">Listar artigos por tag</b>
+  - [x] **tag que tem artigos vinculados não podem ser apagados**
 
 ### Article
 
@@ -36,3 +34,5 @@
   - [ ] **artigo deve ter pelo menos 1 tag**
 
 - [ ] <b style="color: blue">remove artigo método</b>
+
+- [ ] <b style="color: blue">Listar artigos por tag</b>

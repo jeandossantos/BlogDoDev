@@ -1,6 +1,7 @@
 export interface IArticle {
   id?: string;
   title: string;
+  description?: string;
   imageUrl?: string;
   content: string;
   createdAt?: Date;
