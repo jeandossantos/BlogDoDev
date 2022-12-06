@@ -12,6 +12,14 @@ export class ArticleRepoInMemory implements IArticleRepository {
     return article;
   }
 
+  async findByTag(tagId: string): Promise<IArticle[]> {
+    const articles = this.Article.filter((article) => {
+      return article.tags.filter((t) => t === tagId);
+    });
+
+    return articles;
+  }
+
   async find(): Promise<IArticle[]> {
     throw new Error('Method not implemented.');
   }
