@@ -4,6 +4,7 @@ import { ArticleRepoInMemory } from '../../../src/inMemory/ArticleRepoInMemory';
 import { UserRepoInMemory } from '../../../src/inMemory/UserRepoInMemory';
 import { TagRepoInMemory } from '../../../src/inMemory/TagRepoInMemory';
 import { ITag } from '../../../src/app/tag/ITagRepository';
+import { ZodError } from 'zod';
 
 const articleService = new ArticleService(new ArticleRepoInMemory());
 
@@ -35,7 +36,7 @@ describe('Create a article', () => {
     expect(article.id).toBeDefined();
   });
 
-  it('should create an article without an imageUrl', async () => {
+  it('should create an article without imageUrl', async () => {
     const article = await articleService.create({
       title: 'My Article',
       content:
@@ -45,5 +46,16 @@ describe('Create a article', () => {
     });
 
     expect(article.id).toBeDefined();
+  });
+
+  it('should not create an article without content', async () => {
+    const article = articleService.create({
+      title: 'My Article',
+      content: '',
+      tags: [tag.id!],
+      authorId: user.id!,
+    });
+
+    await expect(article).rejects.toThrowError(ZodError);
   });
 });
