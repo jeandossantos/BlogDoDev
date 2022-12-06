@@ -11,7 +11,7 @@ export class ArticleService {
       .object({
         title: z.string().min(2),
         imageUrl: z.string().optional(),
-        content: z.string(),
+        content: z.string().min(200),
         authorId: z.string(),
         tags: z.array(z.string()),
       })
