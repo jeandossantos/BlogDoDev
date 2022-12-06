@@ -12,8 +12,8 @@ export class ArticleService {
         title: z.string().min(2),
         imageUrl: z.string().optional(),
         content: z.string().min(200),
-        authorId: z.string(),
-        tags: z.array(z.string()),
+        authorId: z.string().uuid(),
+        tags: z.array(z.string().uuid()).min(1),
       })
       .parse(props);
 
