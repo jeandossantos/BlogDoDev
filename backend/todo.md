@@ -19,9 +19,9 @@
 
 ### Article
 
-- [ ] <b style="color: blue"> Criar artigo método</b>
+- [x] <b style="color: blue"> Criar artigo método</b>
 
-  - [ ] **artigo deve ter pelo menos 1 tag**
+  - [x] **artigo deve ter pelo menos 1 tag**
 
 - [ ] <b style="color: blue">Buscar artigo por id método</b>
 
