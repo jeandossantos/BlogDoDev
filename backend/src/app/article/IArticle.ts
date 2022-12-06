@@ -15,4 +15,5 @@ export interface IArticleRepository {
   findById(articleId: string): Promise<IArticle>;
   remove(articleId: string): Promise<void>;
   update(article: IArticle): Promise<IArticle>;
+  findByTag(tagId: string): Promise<IArticle[]>;
 }
