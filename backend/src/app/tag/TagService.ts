@@ -1,31 +1,41 @@
 import { ITagRepository } from './ITagRepository';
 import { CustomException } from '../../exceptions/CustomException';
 import { z } from 'zod';
+import { IArticleRepository } from '../article/IArticle';
 
 export class TagService {
-  constructor(private TagRepository: ITagRepository) {}
+  constructor(
+    private tagRepository: ITagRepository,
+    private articleRepository: IArticleRepository
+  ) {}
 
   async create(name: string) {
     name = z.string().min(2).parse(name.toLowerCase().trim());
 
-    const tagFromDB = await this.TagRepository.findByName(name);
+    const tagFromDB = await this.tagRepository.findByName(name);
 
     if (tagFromDB) {
       throw new CustomException(`Tag with name ${name} already exists`);
     }
 
-    const tag = await this.TagRepository.create(name);
+    const tag = await this.tagRepository.create(name);
 
     return tag;
   }
 
   async list() {
-    const tags = await this.TagRepository.find();
+    const tags = await this.tagRepository.find();
 
     return tags;
   }
 
   async remove(tagId: string) {
-    await this.TagRepository.delete(tagId);
+    const articles = await this.articleRepository.findByTag(tagId);
+
+    if (articles.length > 0) {
+      throw new CustomException(`This tag has articles. It cannot be removed.`);
+    }
+
+    await this.tagRepository.delete(tagId);
   }
 }
