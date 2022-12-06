@@ -3,8 +3,12 @@ import { TagService } from '../../../src/app/tag/TagService';
 import { CustomException } from '../../../src/exceptions/CustomException';
 
 import { TagRepoInMemory } from '../../../src/inMemory/TagRepoInMemory';
+import { ArticleRepoInMemory } from '../../../src/inMemory/ArticleRepoInMemory';
 
-const tagService = new TagService(new TagRepoInMemory());
+const tagService = new TagService(
+  new TagRepoInMemory(),
+  new ArticleRepoInMemory()
+);
 
 describe('Create a Tag', () => {
   it('should create a tag', async () => {

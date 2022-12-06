@@ -2,7 +2,12 @@ import { TagService } from '../../../src/app/tag/TagService';
 
 import { TagRepoInMemory } from '../../../src/inMemory/TagRepoInMemory';
 
-const tagService = new TagService(new TagRepoInMemory());
+import { ArticleRepoInMemory } from '../../../src/inMemory/ArticleRepoInMemory';
+
+const tagService = new TagService(
+  new TagRepoInMemory(),
+  new ArticleRepoInMemory()
+);
 
 beforeAll(async () => {
   await tagService.create('tag to be listed');
