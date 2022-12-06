@@ -70,4 +70,16 @@ describe('Create a article', () => {
 
     await expect(article).rejects.toThrowError(ZodError);
   });
+
+  it('should not create an article without any tag', async () => {
+    const article = articleService.create({
+      title: 'My Article',
+      content:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
+      tags: [],
+      authorId: user.id!,
+    });
+
+    await expect(article).rejects.toThrowError(ZodError);
+  });
 });
