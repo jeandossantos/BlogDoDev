@@ -31,47 +31,52 @@ export class ArticleRepoInMemory implements IArticleRepository {
       {
         id: randomUUID(),
         title: 'My Article 1',
-        content:
+        description:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
         imageUrl: 'imageUrl.png',
         tags: [randomUUID()],
         authorId: randomUUID(),
+        createdAt: new Date(),
       },
       {
         id: randomUUID(),
         title: 'My Article 2',
-        content:
+        description:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
         imageUrl: 'imageUrl.png',
         tags: [randomUUID()],
         authorId: randomUUID(),
+        createdAt: new Date(),
       },
       {
         id: randomUUID(),
         title: 'My Article 3',
-        content:
+        description:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
         imageUrl: 'imageUrl.png',
         tags: [randomUUID()],
         authorId: randomUUID(),
+        createdAt: new Date(),
       },
       {
         id: randomUUID(),
         title: 'My Article 4',
-        content:
+        description:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
         imageUrl: 'imageUrl.png',
         tags: [randomUUID()],
         authorId: randomUUID(),
+        createdAt: new Date(),
       },
       {
         id: randomUUID(),
         title: 'My Article 5',
-        content:
+        description:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
         imageUrl: 'imageUrl.png',
         tags: [randomUUID()],
         authorId: randomUUID(),
+        createdAt: new Date(),
       },
     ];
 

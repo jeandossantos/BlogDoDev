@@ -29,10 +29,10 @@
 
   - [x] **artigo deve ter pelo menos 1 tag**
 
-- [ ] <b style="color: blue">Listar artigos por página método</b>
+- [x] <b style="color: blue">Listar artigos por página método</b>
 
-  - [ ] **retorna artigos com paginação**
+  - [x] **retorna artigos com paginação**
         **artigo deve ter as propriedades:**
-  - [ ] { id, title, description, createdAt, imageUrl, author }
+  - [x] { id, title, description, createdAt, updatedAt, imageUrl, author }
 
 - [ ] <b style="color: blue">Listar artigos por tag</b>
