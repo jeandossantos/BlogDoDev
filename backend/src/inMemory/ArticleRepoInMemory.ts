@@ -1,3 +1,4 @@
+import { PaginatedArticleList } from './../app/article/IArticle';
 import { IArticle, IArticleRepository } from '../app/article/IArticle';
 import { randomUUID } from 'node:crypto';
 
@@ -22,8 +23,78 @@ export class ArticleRepoInMemory implements IArticleRepository {
     return articles;
   }
 
-  async find(): Promise<IArticle[]> {
-    return this.Article;
+  async find(page?: number, search?: string): Promise<PaginatedArticleList> {
+    page = page || 1;
+    search = search || '';
+
+    const articles = [
+      {
+        id: randomUUID(),
+        title: 'My Article 1',
+        content:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
+        imageUrl: 'imageUrl.png',
+        tags: [randomUUID()],
+        authorId: randomUUID(),
+      },
+      {
+        id: randomUUID(),
+        title: 'My Article 2',
+        content:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
+        imageUrl: 'imageUrl.png',
+        tags: [randomUUID()],
+        authorId: randomUUID(),
+      },
+      {
+        id: randomUUID(),
+        title: 'My Article 3',
+        content:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
+        imageUrl: 'imageUrl.png',
+        tags: [randomUUID()],
+        authorId: randomUUID(),
+      },
+      {
+        id: randomUUID(),
+        title: 'My Article 4',
+        content:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
+        imageUrl: 'imageUrl.png',
+        tags: [randomUUID()],
+        authorId: randomUUID(),
+      },
+      {
+        id: randomUUID(),
+        title: 'My Article 5',
+        content:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
+        imageUrl: 'imageUrl.png',
+        tags: [randomUUID()],
+        authorId: randomUUID(),
+      },
+    ];
+
+    if (page === 1) {
+      return {
+        articles: [articles[0], articles[1], articles[2], articles[3]],
+        count: articles.length,
+        limit: 4,
+      };
+    }
+    if (page === 2) {
+      return {
+        articles: [articles[4]],
+        count: articles.length,
+        limit: 4,
+      };
+    }
+
+    return {
+      articles: [],
+      count: 0,
+      limit: 4,
+    };
   }
 
   async findById(articleId: string): Promise<IArticle | null> {
