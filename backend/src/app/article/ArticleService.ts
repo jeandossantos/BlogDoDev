@@ -33,4 +33,8 @@ export class ArticleService {
 
     return article;
   }
+
+  async remove(articleId: string) {
+    await this.articleRepository.remove(articleId);
+  }
 }
