@@ -33,7 +33,7 @@ export class ArticleRepoInMemory implements IArticleRepository {
   }
 
   async remove(articleId: string): Promise<void> {
-    throw new Error('Method not implemented.');
+    this.Article = this.Article.filter((article) => article.id !== articleId);
   }
 
   async update(article: IArticle): Promise<IArticle> {

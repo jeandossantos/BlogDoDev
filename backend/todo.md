@@ -23,16 +23,16 @@
 
 - [x] <b style="color: blue">Buscar artigo por id método</b>
 
-- [ ] <b style="color: blue">Listar artigos por página método</b>
-
-  - [ ] **retorna artigos com paginação**
-        **artigo deve ter as propriedades:**
-  - [ ] { id, title, description, createdAt, imageUrl, author }
+- [ ] <b style="color: blue">remove artigo método</b>
 
 - [ ] <b style="color: blue">atualizar artigo método</b>
 
   - [ ] **artigo deve ter pelo menos 1 tag**
 
-- [ ] <b style="color: blue">remove artigo método</b>
+- [ ] <b style="color: blue">Listar artigos por página método</b>
+
+  - [ ] **retorna artigos com paginação**
+        **artigo deve ter as propriedades:**
+  - [ ] { id, title, description, createdAt, imageUrl, author }
 
 - [ ] <b style="color: blue">Listar artigos por tag</b>
