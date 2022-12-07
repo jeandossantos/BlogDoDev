@@ -37,6 +37,21 @@ export class ArticleRepoInMemory implements IArticleRepository {
   }
 
   async update(article: IArticle): Promise<IArticle> {
-    throw new Error('Method not implemented.');
+    this.Article = this.Article.map((a) => {
+      if (a.id === article.id) {
+        a.title = article.title;
+        a.description = article.description;
+        a.imageUrl = article.imageUrl;
+        a.tags = article.tags;
+        a.content = article.content;
+        a.updatedAt = new Date();
+      }
+
+      article = { ...a };
+
+      return a;
+    });
+
+    return article!;
   }
 }
