@@ -65,4 +65,10 @@ export class ArticleService {
 
     return article;
   }
+
+  async list(page?: number, search?: string) {
+    const articles = await this.articleRepository.find(page, search);
+
+    return articles;
+  }
 }
