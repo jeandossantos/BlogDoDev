@@ -13,7 +13,7 @@ export interface IArticle {
 export interface IArticleRepository {
   create(article: IArticle): Promise<IArticle>;
   find(): Promise<IArticle[]>;
-  findById(articleId: string): Promise<IArticle>;
+  findById(articleId: string): Promise<IArticle | null>;
   remove(articleId: string): Promise<void>;
   update(article: IArticle): Promise<IArticle>;
   findByTag(tagId: string): Promise<IArticle[]>;
