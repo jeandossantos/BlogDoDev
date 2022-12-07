@@ -78,4 +78,17 @@ describe('Update article', () => {
 
     await expect(articleUpdated).rejects.toThrow(ZodError);
   });
+
+  it('should not update article with any tag', async () => {
+    const articleUpdated = articleService.update({
+      id: article.id,
+      title: 'Article updated',
+      content:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      tags: [],
+      imageUrl: 'imageUrlUpdated.png',
+    });
+
+    await expect(articleUpdated).rejects.toThrow(ZodError);
+  });
 });
