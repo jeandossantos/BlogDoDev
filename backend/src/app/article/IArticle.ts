@@ -15,6 +15,6 @@ export interface IArticleRepository {
   find(): Promise<IArticle[]>;
   findById(articleId: string): Promise<IArticle | null>;
   remove(articleId: string): Promise<void>;
-  update(article: IArticle): Promise<IArticle>;
+  update(article: Omit<IArticle, 'authorId'>): Promise<IArticle>;
   findByTag(tagId: string): Promise<IArticle[]>;
 }
