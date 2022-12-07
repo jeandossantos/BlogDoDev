@@ -71,4 +71,10 @@ export class ArticleService {
 
     return articles;
   }
+
+  async findByTagId(page: number, tagId: string) {
+    const result = this.articleRepository.findByTag(page, tagId);
+
+    return result;
+  }
 }
