@@ -1,3 +1,4 @@
+import { ZodError } from 'zod';
 import { randomUUID } from 'crypto';
 
 import { IArticle } from './../../../src/app/article/IArticle';
@@ -63,5 +64,18 @@ describe('Update article', () => {
     expect(articleUpdated.tags).toHaveLength(2);
     expect(articleUpdated.imageUrl).toBe('imageUrlUpdated.png');
     expect(articleUpdated.updatedAt).toBeDefined();
+  });
+
+  it('should not update article with description less than 200 characters', async () => {
+    const articleUpdated = articleService.update({
+      id: article.id,
+      title: 'Article updated',
+      content:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      tags: [randomUUID(), randomUUID()],
+      imageUrl: 'imageUrlUpdated.png',
+    });
+
+    await expect(articleUpdated).rejects.toThrow(ZodError);
   });
 });
