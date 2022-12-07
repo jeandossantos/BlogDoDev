@@ -23,7 +23,7 @@
 
 - [x] <b style="color: blue">Buscar artigo por id método</b>
 
-- [ ] <b style="color: blue">remove artigo método</b>
+- [x] <b style="color: blue">remove artigo método</b>
 
 - [ ] <b style="color: blue">atualizar artigo método</b>
 
