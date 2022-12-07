@@ -25,9 +25,9 @@
 
 - [x] <b style="color: blue">remove artigo método</b>
 
-- [ ] <b style="color: blue">atualizar artigo método</b>
+- [x] <b style="color: blue">atualizar artigo método</b>
 
-  - [ ] **artigo deve ter pelo menos 1 tag**
+  - [x] **artigo deve ter pelo menos 1 tag**
 
 - [ ] <b style="color: blue">Listar artigos por página método</b>
 
