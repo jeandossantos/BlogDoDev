@@ -18,8 +18,6 @@ describe('List articles with pagination', () => {
   it('should list articles by page', async () => {
     const articles = await articleService.list(2);
 
-    console.log(articles);
-
     expect(articles).toHaveProperty('count');
     expect(articles).toHaveProperty('articles');
     expect(articles).toHaveProperty('limit');
