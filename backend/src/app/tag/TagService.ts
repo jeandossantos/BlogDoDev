@@ -30,9 +30,9 @@ export class TagService {
   }
 
   async remove(tagId: string) {
-    const articles = await this.articleRepository.findByTag(tagId);
+    const result = await this.articleRepository.findByTag(1, tagId);
 
-    if (articles.length > 0) {
+    if (result.articles.length > 0) {
       throw new CustomException(`This tag has articles. It cannot be removed.`);
     }
 
