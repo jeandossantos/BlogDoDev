@@ -13,14 +13,17 @@ export class ArticleRepoInMemory implements IArticleRepository {
     return article;
   }
 
-  async findByTag(tagId: string): Promise<IArticle[]> {
+  async findByTag(
+    page: number = 1,
+    tagId: string
+  ): Promise<PaginatedArticleList> {
     const articles = this.Article.filter((article) => {
       if (article.tags.includes(tagId)) {
         return article;
       }
     });
 
-    return articles;
+    return { articles, count: articles.length, limit: 4 };
   }
 
   async find(page?: number, search?: string): Promise<PaginatedArticleList> {
