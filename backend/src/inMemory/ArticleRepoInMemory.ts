@@ -23,11 +23,13 @@ export class ArticleRepoInMemory implements IArticleRepository {
   }
 
   async find(): Promise<IArticle[]> {
-    throw new Error('Method not implemented.');
+    return this.Article;
   }
 
-  async findById(articleId: string): Promise<IArticle> {
-    throw new Error('Method not implemented.');
+  async findById(articleId: string): Promise<IArticle | null> {
+    const article = this.Article.find((a) => a.id === articleId);
+
+    return article || null;
   }
 
   async remove(articleId: string): Promise<void> {
