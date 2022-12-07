@@ -1,15 +1,10 @@
 import { randomUUID } from 'crypto';
-import { ZodError } from 'zod';
 
 import { IArticle } from './../../../src/app/article/IArticle';
-import { ITag } from '../../../src/app/tag/ITagRepository';
-import { IUser } from '../../../src/app/user/IUserRepository';
 
 import { ArticleService } from '../../../src/app/article/ArticleService';
 
 import { ArticleRepoInMemory } from '../../../src/inMemory/ArticleRepoInMemory';
-import { UserRepoInMemory } from '../../../src/inMemory/UserRepoInMemory';
-import { TagRepoInMemory } from '../../../src/inMemory/TagRepoInMemory';
 
 const articleService = new ArticleService(new ArticleRepoInMemory());
 
