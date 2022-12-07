@@ -27,4 +27,10 @@ export class ArticleService {
 
     return article;
   }
+
+  async findById(id: string) {
+    const article = await this.articleRepository.findById(id);
+
+    return article;
+  }
 }

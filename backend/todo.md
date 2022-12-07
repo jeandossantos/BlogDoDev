@@ -21,9 +21,9 @@
 
   - [x] **artigo deve ter pelo menos 1 tag**
 
-- [ ] <b style="color: blue">Buscar artigo por id método</b>
+- [x] <b style="color: blue">Buscar artigo por id método</b>
 
-- [ ] <b style="color: blue">Listar artigos método</b>
+- [ ] <b style="color: blue">Listar artigos por página método</b>
 
   - [ ] **retorna artigos com paginação**
         **artigo deve ter as propriedades:**
