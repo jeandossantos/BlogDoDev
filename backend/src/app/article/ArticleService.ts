@@ -49,7 +49,7 @@ export class ArticleService {
         title: z.string().min(2),
         imageUrl: z.string().optional(),
         content: z.string().min(200),
-        description: z.string(),
+        description: z.string().optional(),
         tags: z.array(z.string().uuid()).min(1),
       })
       .parse(props);
