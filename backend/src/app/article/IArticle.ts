@@ -10,9 +10,15 @@ export interface IArticle {
   tags: string[];
 }
 
+export type PaginatedArticleList = {
+  articles: IArticle[];
+  count: number;
+  limit: number;
+};
+
 export interface IArticleRepository {
   create(article: IArticle): Promise<IArticle>;
-  find(): Promise<IArticle[]>;
+  find(page?: number, search?: string): Promise<PaginatedArticleList>;
   findById(articleId: string): Promise<IArticle | null>;
   remove(articleId: string): Promise<void>;
   update(article: Omit<IArticle, 'authorId'>): Promise<IArticle>;
