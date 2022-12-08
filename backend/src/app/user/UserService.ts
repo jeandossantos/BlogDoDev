@@ -62,6 +62,8 @@ export class UserService {
   async changePassword(id: string, newPassword: string) {
     newPassword = z.string().min(6).parse(newPassword);
 
-    await this.userRepository.changePassword(id, newPassword);
+    const passwordHash = encryptPassword(newPassword);
+
+    await this.userRepository.changePassword(id, passwordHash);
   }
 }
