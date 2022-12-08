@@ -48,4 +48,12 @@ describe('create User', () => {
       new CustomException('Enter email and password')
     );
   });
+
+  it('should not authenticate a user with no password', async () => {
+    const result = userService.login('test-login@gmail.com', '');
+
+    await expect(result).rejects.toThrowError(
+      new CustomException('Enter email and password')
+    );
+  });
 });
