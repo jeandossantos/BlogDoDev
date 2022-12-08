@@ -1,7 +1,32 @@
-// import { IUser, IUserRepository } from './IUserRepository';
+import { prisma } from './../../connection/prisma';
+import { IUser, IUserRepository } from './IUserRepository';
 
-// export class UserRepository implements IUserRepository {
-//   async create(user: IUser): Promise<IUser> {
-//     throw new Error('Method not implemented.');
-//   }
-// }
+export class UserRepository implements IUserRepository {
+  async create({ username, email, password }: IUser): Promise<IUser> {
+    const user = await prisma.user.create({
+      data: {
+        username,
+        email,
+        password,
+      },
+    });
+
+    return user;
+  }
+
+  async findByEmail(email: string): Promise<IUser | null> {
+    throw new Error('Method not implemented.');
+  }
+
+  async remove(id: string): Promise<string> {
+    throw new Error('Method not implemented.');
+  }
+
+  async update(userId: string, username: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async changePassword(userId: string, newPassword: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+}
