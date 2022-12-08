@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { IUser, IUserRepository } from './IUserRepository';
 import { encryptPassword } from '../utils/utils';
 import { CustomException } from '../../exceptions/CustomException';
+import { compareSync } from 'bcrypt';
 
 type createUserProps = Omit<IUser, 'id' | 'createdAt'> & {
   confirmPassword: string;
@@ -34,6 +35,30 @@ export class UserService {
       email,
       password: encryptPassword(password),
     });
+
+    const token = jwt.sign({ id: user.id }, 'secret', {
+      subject: user.id,
+    });
+
+    return {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      token,
+    };
+  }
+
+  async login(email: string, password: string) {
+    if (!email || !password)
+      throw new CustomException('Enter email and password');
+
+    const user = await this.userRepository.findByEmail(email);
+
+    if (!user) throw new CustomException('E-mail not registered');
+
+    const isMatch = compareSync(password, user.password);
+
+    if (!isMatch) throw new CustomException('Enter email and password');
 
     const token = jwt.sign({ id: user.id }, 'secret', {
       subject: user.id,
