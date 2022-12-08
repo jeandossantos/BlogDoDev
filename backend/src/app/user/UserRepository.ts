@@ -31,7 +31,10 @@ export class UserRepository implements IUserRepository {
   }
 
   async update(userId: string, username: string): Promise<void> {
-    throw new Error('Method not implemented.');
+    await prisma.user.update({
+      where: { id: userId },
+      data: { username },
+    });
   }
 
   async changePassword(userId: string, newPassword: string): Promise<void> {
