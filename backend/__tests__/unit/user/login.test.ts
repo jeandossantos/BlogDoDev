@@ -24,4 +24,12 @@ describe('create User', () => {
     expect(payload).toHaveProperty('username');
     expect(payload).toHaveProperty('email');
   });
+
+  it('should not authenticate a user if user not exists', async () => {
+    const result = userService.login('user@notExists.com', '123456');
+
+    await expect(result).rejects.toThrowError(
+      new CustomException('User not found')
+    );
+  });
 });
