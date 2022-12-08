@@ -4,9 +4,15 @@ import express, { NextFunction, Request, Response } from 'express';
 import { CustomException } from './exceptions/CustomException';
 import { ZodError } from 'zod';
 
+import { routes as userRoutes } from './routes/user.routes';
+import { routes as tagRoutes } from './routes/tag.routes';
+import { routes as articleRoutes } from './routes/article.routes';
+
 const app = express();
 app.use(express.json());
-
+app.use(userRoutes);
+app.use(tagRoutes);
+app.use(articleRoutes);
 app.use(
   (
     error: CustomException | ZodError | Error,
