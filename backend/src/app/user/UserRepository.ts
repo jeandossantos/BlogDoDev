@@ -15,7 +15,11 @@ export class UserRepository implements IUserRepository {
   }
 
   async findByEmail(email: string): Promise<IUser | null> {
-    throw new Error('Method not implemented.');
+    const user = await prisma.user.findFirst({
+      where: { email },
+    });
+
+    return user;
   }
 
   async remove(id: string): Promise<string> {
