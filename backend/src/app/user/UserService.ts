@@ -54,11 +54,11 @@ export class UserService {
 
     const user = await this.userRepository.findByEmail(email);
 
-    if (!user) throw new CustomException('E-mail not registered');
+    if (!user) throw new CustomException('User not found');
 
     const isMatch = compareSync(password, user.password);
 
-    if (!isMatch) throw new CustomException('Enter email and password');
+    if (!isMatch) throw new CustomException('Email or password incorrect');
 
     const token = jwt.sign({ id: user.id }, 'secret', {
       subject: user.id,
