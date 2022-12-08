@@ -1,3 +1,9 @@
+#### User
+
+- <b style="color: blue">Registrar usuário método</b>
+  - [x] **usuário deve ter username, email, password, imageUrl**
+  - [x] **usuário com email já cadastrado não pode ser criado**
+
 ### Tag
 
 - [x] <b style="color: blue">Criar tag método</b>
@@ -35,4 +41,4 @@
         **artigo deve ter as propriedades:**
   - [x] { id, title, description, createdAt, updatedAt, imageUrl, author }
 
-- [ ] <b style="color: blue">Listar artigos por tag</b>
+- [x] <b style="color: blue">Listar artigos por tag</b>
