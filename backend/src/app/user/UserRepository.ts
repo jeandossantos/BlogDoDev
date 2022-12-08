@@ -23,7 +23,11 @@ export class UserRepository implements IUserRepository {
   }
 
   async remove(id: string): Promise<string> {
-    throw new Error('Method not implemented.');
+    const user = await prisma.user.delete({
+      where: { id },
+    });
+
+    return user.id;
   }
 
   async update(userId: string, username: string): Promise<void> {
