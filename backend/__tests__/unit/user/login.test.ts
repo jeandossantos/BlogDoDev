@@ -32,4 +32,12 @@ describe('create User', () => {
       new CustomException('User not found')
     );
   });
+
+  it('should not authenticate a user with wrong password', async () => {
+    const result = userService.login('test-login@gmail.com', '1234567890');
+
+    await expect(result).rejects.toThrowError(
+      new CustomException('Email or password incorrect')
+    );
+  });
 });
