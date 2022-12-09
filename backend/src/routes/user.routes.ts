@@ -14,7 +14,10 @@ routes.post('/register', (req, res) => {
   return userController.store(req, res);
 });
 
-routes.post('/login', (req, res) => {});
+routes.post('/login', (req, res) => {
+  return userController.login(req, res);
+});
+
 routes.put('/users/:userId', (req, res) => {});
 routes.delete('/users/:userId', (req, res) => {});
 

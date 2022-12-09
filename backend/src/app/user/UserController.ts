@@ -16,4 +16,12 @@ export class UserController {
 
     return res.status(201).json(user);
   }
+
+  async login(req: Request, res: Response) {
+    const { email, password } = req.body;
+
+    const payload = await this.userService.login(email, password);
+
+    return res.status(200).json(payload);
+  }
 }
