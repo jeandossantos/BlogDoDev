@@ -3,13 +3,13 @@ import request from 'supertest';
 import { app } from '../../../src';
 import { prisma } from '../../../src/connection/prisma';
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-});
-
 let user;
 
 beforeAll(async () => {
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+  });
+
   await client.connect();
   await client.query('DELETE FROM users');
   await client.end();
@@ -25,6 +25,7 @@ beforeAll(async () => {
 
 describe('update user', () => {
   it('should update user', async () => {
+    console.log(user.id);
     const response = await request(app).put(`/users/${user.id}`).send({
       username: 'Updated user',
     });
