@@ -13,18 +13,18 @@ beforeAll(async () => {
   await client.connect();
   await client.query('DELETE FROM users');
   await client.end();
-
-  user = await prisma.user.create({
-    data: {
-      username: 'user to be updated',
-      email: 'user-updateUSer@example.com',
-      password: 'password',
-    },
-  });
 });
 
 describe('update user', () => {
   it('should update user', async () => {
+    user = await prisma.user.create({
+      data: {
+        username: 'user to be updated',
+        email: 'user-updateUSer@example.com',
+        password: 'password',
+      },
+    });
+
     const response = await request(app).put(`/users/${user.id}`).send({
       username: 'Updated user',
     });

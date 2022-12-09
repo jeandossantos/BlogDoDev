@@ -33,4 +33,15 @@ describe('Should change the password of the user', () => {
 
     expect(response.statusCode).toBe(200);
   });
+
+  it('should not change the password if too small', async () => {
+    const response = await request(app)
+      .patch(`/users/${user.id}/updatePassword`)
+      .send({
+        newPassword: '123',
+      });
+
+    expect(response.statusCode).toBe(400);
+    expect(response.body.issues[0].code).toBe('too_small');
+  });
 });

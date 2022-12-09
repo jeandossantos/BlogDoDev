@@ -17,7 +17,7 @@ beforeAll(async () => {
   user = await prisma.user.create({
     data: {
       username: 'user to be updated',
-      email: 'user@example.com',
+      email: 'userToBeDeleted@example.com',
       password: 'password',
     },
   });
