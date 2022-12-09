@@ -32,6 +32,14 @@ export class UserController {
 
     await this.userService.update(userId, username);
 
-    return res.status(200).json();
+    return res.status(200).send();
+  }
+
+  async destroy(req: Request, res: Response) {
+    const userId = req.params.userId;
+
+    await this.userService.remove(userId);
+
+    return res.status(200).send();
   }
 }
