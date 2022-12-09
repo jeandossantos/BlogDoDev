@@ -37,4 +37,13 @@ describe('Authenticate a user', () => {
 
     expect(response.body.message).toBe('User not found');
   });
+
+  it('should not authenticate with wrong password', async () => {
+    const response = await request(app).post('/login').send({
+      email: 'auth@test.com',
+      password: 'wrong password',
+    });
+
+    expect(response.body.message).toBe('Email or password incorrect');
+  });
 });
