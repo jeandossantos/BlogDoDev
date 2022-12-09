@@ -23,4 +23,16 @@ describe('Create a user', () => {
 
     expect(response.body).toHaveProperty('token');
   });
+
+  it('should not create a user if email already exists', async () => {
+    const response = await request(app).post('/register').send({
+      username: 'user already exists',
+      email: 'new-email@test.com',
+      password: 'password',
+      confirmPassword: 'password',
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe('User already exists');
+  });
 });
