@@ -36,4 +36,12 @@ describe('update user', () => {
     expect(response.status).toBe(200);
     expect(updatedUser?.username).toBe('Updated user');
   });
+
+  it('should not update user if username is too small', async () => {
+    const response = await request(app).put(`/users/${user.id}`).send({
+      username: '0',
+    });
+
+    expect(response.status).toBe(400);
+  });
 });
