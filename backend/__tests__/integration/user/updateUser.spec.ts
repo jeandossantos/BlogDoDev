@@ -17,7 +17,7 @@ beforeAll(async () => {
   user = await prisma.user.create({
     data: {
       username: 'user to be updated',
-      email: 'user@example.com',
+      email: 'user-updateUSer@example.com',
       password: 'password',
     },
   });
@@ -25,7 +25,6 @@ beforeAll(async () => {
 
 describe('update user', () => {
   it('should update user', async () => {
-    console.log(user.id);
     const response = await request(app).put(`/users/${user.id}`).send({
       username: 'Updated user',
     });
