@@ -71,4 +71,16 @@ describe('Create a user', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toBe('Passwords do not match');
   });
+
+  it('should not create a user if passwords are less than 6 characters', async () => {
+    const response = await request(app).post('/register').send({
+      username: 'invalid-password',
+      email: 'test-password@test.com',
+      password: '123',
+      confirmPassword: '123',
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.issues[0].code).toBe('too_small');
+  });
 });
