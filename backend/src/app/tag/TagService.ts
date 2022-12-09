@@ -1,7 +1,7 @@
+import { IArticleRepository } from './../article/IArticleRepository';
 import { ITagRepository } from './ITagRepository';
 import { CustomException } from '../../exceptions/CustomException';
 import { z } from 'zod';
-import { IArticleRepository } from '../article/IArticle';
 
 export class TagService {
   constructor(
