@@ -47,4 +47,16 @@ describe('Create a user', () => {
     expect(response.status).toBe(400);
     expect(response.body.issues[0].code).toBe('too_small');
   });
+
+  it('should not create a user with invalid username', async () => {
+    const response = await request(app).post('/register').send({
+      username: 'invalid-email',
+      email: 'new-email&test-com',
+      password: 'password',
+      confirmPassword: 'password',
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.issues[0].message).toBe('Invalid email');
+  });
 });
