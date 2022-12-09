@@ -18,7 +18,10 @@ routes.post('/login', (req, res) => {
   return userController.login(req, res);
 });
 
-routes.put('/users/:userId', (req, res) => {});
+routes.put('/users/:userId', (req, res) => {
+  return userController.update(req, res);
+});
+
 routes.delete('/users/:userId', (req, res) => {});
 
 routes.patch('/users/:userId/updatePassword', (req, res) => {});

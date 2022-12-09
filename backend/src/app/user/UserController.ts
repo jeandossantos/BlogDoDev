@@ -24,4 +24,14 @@ export class UserController {
 
     return res.status(200).json(payload);
   }
+
+  async update(req: Request, res: Response) {
+    const { username } = req.body;
+
+    const userId = req.params.userId;
+
+    await this.userService.update(userId, username);
+
+    return res.status(200).json();
+  }
 }
