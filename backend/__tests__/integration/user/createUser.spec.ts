@@ -59,4 +59,16 @@ describe('Create a user', () => {
     expect(response.status).toBe(400);
     expect(response.body.issues[0].message).toBe('Invalid email');
   });
+
+  it('should not create a user with invalid password', async () => {
+    const response = await request(app).post('/register').send({
+      username: 'invalid-password',
+      email: 'test-password@test.com',
+      password: '123',
+      confirmPassword: 'password',
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe('Passwords do not match');
+  });
 });
