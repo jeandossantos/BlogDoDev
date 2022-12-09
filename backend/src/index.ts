@@ -29,7 +29,7 @@ app.use(
     }
 
     if (error instanceof ZodError) {
-      return res.status(400).json('oi');
+      return res.status(400).json(error);
     }
 
     console.error(error.message || error);
