@@ -26,6 +26,8 @@ routes.delete('/users/:userId', (req, res) => {
   return userController.destroy(req, res);
 });
 
-routes.patch('/users/:userId/updatePassword', (req, res) => {});
+routes.patch('/users/:userId/updatePassword', (req, res) => {
+  return userController.changePassword(req, res);
+});
 
 export { routes };

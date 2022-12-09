@@ -42,4 +42,14 @@ export class UserController {
 
     return res.status(200).send();
   }
+
+  async changePassword(req: Request, res: Response) {
+    const { newPassword } = req.body;
+
+    const userId = req.params.userId;
+
+    await this.userService.changePassword(userId, newPassword);
+
+    return res.status(200).send();
+  }
 }
