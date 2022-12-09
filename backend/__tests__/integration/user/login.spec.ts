@@ -15,17 +15,26 @@ beforeAll(async () => {
 describe('Authenticate a user', () => {
   it('should authenticate a user', async () => {
     await request(app).post('/register').send({
-      username: 'test user',
-      email: 'new-email@test.com',
+      username: 'login user',
+      email: 'auth@test.com',
       password: 'password',
       confirmPassword: 'password',
     });
 
     const response = await request(app).post('/login').send({
-      email: 'new-email@test.com',
+      email: 'auth@test.com',
       password: 'password',
     });
 
     expect(response.body).toHaveProperty('token');
+  });
+
+  it('should not authenticate if user not exists', async () => {
+    const response = await request(app).post('/login').send({
+      email: 'user-net-exists@test.com',
+      password: 'password',
+    });
+
+    expect(response.body.message).toBe('User not found');
   });
 });
