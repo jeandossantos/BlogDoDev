@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 
-import { IArticle } from './../../../src/app/article/IArticle';
+import { IArticle } from './../../../src/app/article/IArticleRepository';
 
 import { ArticleService } from '../../../src/app/article/ArticleService';
 

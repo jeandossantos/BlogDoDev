@@ -3,7 +3,7 @@ import { UserService } from '../../../src/app/user/UserService';
 import { UserRepoInMemory } from '../../../src/inMemory/UserRepoInMemory';
 
 const userService = new UserService(new UserRepoInMemory());
-let user;
+let user: { id: any; username?: string; email?: string; token?: string };
 
 beforeAll(async () => {
   user = await userService.create({

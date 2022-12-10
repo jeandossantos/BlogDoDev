@@ -1,4 +1,3 @@
-import { IUser } from './../../../src/app/user/IUserRepository';
 import { UserService } from '../../../src/app/user/UserService';
 import { CustomException } from '../../../src/exceptions/CustomException';
 import { UserRepoInMemory } from '../../../src/inMemory/UserRepoInMemory';
