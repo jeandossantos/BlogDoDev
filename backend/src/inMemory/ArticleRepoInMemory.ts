@@ -1,5 +1,8 @@
-import { PaginatedArticleList } from './../app/article/IArticle';
-import { IArticle, IArticleRepository } from '../app/article/IArticle';
+import { PaginatedArticleList } from './../app/article/IArticleRepository';
+import {
+  IArticle,
+  IArticleRepository,
+} from '../app/article/IArticleRepository';
 import { randomUUID } from 'node:crypto';
 
 export class ArticleRepoInMemory implements IArticleRepository {

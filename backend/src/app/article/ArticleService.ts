@@ -1,4 +1,4 @@
-import { IArticle, IArticleRepository } from './IArticle';
+import { IArticle, IArticleRepository } from './IArticleRepository';
 import { z } from 'zod';
 
 type CreateArticleProps = Omit<IArticle, 'id' | 'createdAt' | 'updatedAt'>;
