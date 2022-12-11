@@ -57,6 +57,7 @@ describe('Remove tag', () => {
     const tag = await prisma.tag.create({
       data: { name: 'tag 123' },
     });
+
     await prisma.article.create({
       data: {
         authorId: userId,

@@ -21,7 +21,7 @@ beforeAll(async () => {
   await client.query('delete from articles');
   await client.end();
 
-  userId = (await createUser('user-test-finById-article@test.com')).id!;
+  userId = (await createUser('user-test-update-article@test.com')).id!;
 });
 
 async function createUser(email: string) {
@@ -40,11 +40,17 @@ const generateToken = function (id: string) {
   return jwt.sign({ id: id }, process.env.SECRET_KEY!);
 };
 
-describe('Remove article', () => {
-  it('should fetch an article', async () => {
+describe('Create article', () => {
+  it('should create article', async () => {
     const tag = await prisma.tag.create({
-      data: { name: 'some tag again' },
+      data: { name: 'someTag-test-1' },
     });
+
+    const moreOneTag = await prisma.tag.create({
+      data: { name: 'someTag-test-2' },
+    });
+
+    const token = generateToken(userId);
 
     const article = await prisma.article.create({
       data: {
@@ -59,14 +65,22 @@ describe('Remove article', () => {
       },
     });
 
-    const token = generateToken(userId);
-
     const response = await request(app)
-      .get('/articles/' + article.id)
-      .set('Authorization', `bearer ${token}`);
+      .put('/articles/' + article.id)
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        authorId: userId,
+        title: 'title updated',
+        description: 'some description updated',
+        content:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries 😍",
+        tags: [tag.id, moreOneTag.id],
+      });
 
     expect(response.status).toBe(200);
-    expect(response.body.title).toBe(article.title);
-    expect(response.body.content).toBe(article.content);
+    expect(response.body.title).not.toEqual(article.title);
+    expect(response.body.description).not.toEqual(article.description);
+    expect(response.body.content).not.toEqual(article.content);
+    expect(response.body.tags).toHaveLength(2);
   });
 });
