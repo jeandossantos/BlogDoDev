@@ -1,7 +1,10 @@
 import { IArticle, IArticleRepository } from './IArticleRepository';
 import { z } from 'zod';
 
-type CreateArticleProps = Omit<IArticle, 'id' | 'createdAt' | 'updatedAt'>;
+type CreateArticleProps = Omit<
+  IArticle,
+  'id' | 'createdAt' | 'updatedAt' | 'tags'
+> & { tags: string[] };
 type UpdateArticleProps = Omit<
   IArticle,
   'authorId' | 'createdAt' | 'updatedAt'
@@ -26,7 +29,9 @@ export class ArticleService {
       imageUrl,
       content,
       authorId,
-      tags,
+      tags: tags.map((t) => {
+        return { id: t };
+      }),
     });
 
     return article;
@@ -60,7 +65,9 @@ export class ArticleService {
       imageUrl,
       description,
       content,
-      tags,
+      tags: tags.map((t) => {
+        return { id: t };
+      }),
     });
 
     return article;

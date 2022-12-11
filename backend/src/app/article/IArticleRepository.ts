@@ -1,13 +1,18 @@
+interface Tag {
+  id: string;
+  name?: string;
+}
+
 export interface IArticle {
   id?: string;
   title: string;
-  description?: string;
-  imageUrl?: string;
+  description?: string | null;
+  imageUrl?: string | null;
   content: string;
   createdAt?: Date;
   updatedAt?: Date;
   authorId: string;
-  tags: string[];
+  tags: Tag[];
 }
 
 export type PaginatedArticleList = {
