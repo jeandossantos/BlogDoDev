@@ -34,4 +34,20 @@ export class ArticleController {
 
     return res.json(article);
   }
+
+  async update(req: Request, res: Response) {
+    const { title, description, content, imageUrl, tags } = req.body;
+    const articleId = req.params.articleId;
+
+    const article = await this.articleService.update({
+      title,
+      description,
+      content,
+      imageUrl,
+      tags,
+      id: articleId,
+    });
+
+    return res.json(article);
+  }
 }

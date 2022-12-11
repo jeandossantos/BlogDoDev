@@ -21,4 +21,8 @@ routes.get('/articles/:articleId', (req, res) => {
   return articleController.show(req, res);
 });
 
+routes.put('/articles/:articleId', (req, res) => {
+  return articleController.update(req, res);
+});
+
 export { routes };
