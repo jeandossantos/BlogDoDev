@@ -16,4 +16,8 @@ routes.post('/tags', (req, res) => {
   return tagController.store(req, res);
 });
 
+routes.get('/tags', (req, res) => {
+  return tagController.index(req, res);
+});
+
 export { routes };
