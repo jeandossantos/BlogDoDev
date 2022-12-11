@@ -1,6 +1,11 @@
+import jwt from 'jsonwebtoken';
 import { describe, expect, test } from '@jest/globals';
 import request from 'supertest';
 import { Client } from 'pg';
+
+import { UserService } from './../../../src/app/user/UserService';
+import { UserRepository } from './../../../src/app/user/UserRepository';
+import { app } from '../../../src';
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -11,10 +16,6 @@ beforeAll(async () => {
   await client.query('delete from users');
   await client.end();
 });
-
-import { UserService } from './../../../src/app/user/UserService';
-import { UserRepository } from './../../../src/app/user/UserRepository';
-import { app } from '../../../src';
 
 async function createUser(email: string) {
   const userRepository = new UserRepository();
@@ -28,12 +29,19 @@ async function createUser(email: string) {
   });
 }
 
+const generateToken = function (id: string) {
+  return jwt.sign({ id: id }, process.env.SECRET_KEY!);
+};
+
 describe('Should change the password of the user', () => {
   test('should change the password', async () => {
     const user = await createUser('change-password-1@test.com');
 
+    const token = generateToken(user.id!);
+
     const response = await request(app)
       .patch(`/users/${user.id}/updatePassword`)
+      .set('Authorization', `bearer ${token}`)
       .send({
         newPassword: 'newPassword',
       });
@@ -44,8 +52,11 @@ describe('Should change the password of the user', () => {
   test('should not change the password if too small', async () => {
     const user = await createUser('change-password-2@test.com');
 
+    const token = generateToken(user.id!);
+
     const response = await request(app)
       .patch(`/users/${user.id}/updatePassword`)
+      .set('Authorization', `bearer ${token}`)
       .send({
         newPassword: '123',
       });

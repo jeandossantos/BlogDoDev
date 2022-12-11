@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import { describe, expect, test } from '@jest/globals';
 import { Client } from 'pg';
 import request from 'supertest';
@@ -28,11 +29,19 @@ async function createUser(email: string) {
   });
 }
 
+const generateToken = function (id: string) {
+  return jwt.sign({ id: id }, process.env.SECRET_KEY!);
+};
+
 describe('should remove a user', () => {
   test('should remove the user', async () => {
     const user = await createUser('user-to-be-deleted@test.com');
 
-    const response = await request(app).delete(`/users/${user.id}`);
+    const token = generateToken(user.id!);
+
+    const response = await request(app)
+      .delete(`/users/${user.id}`)
+      .set('Authorization', `Bearer ${token}`);
 
     expect(response.status).toBe(200);
   });
