@@ -57,4 +57,17 @@ describe('create tag', () => {
     expect(response.body).toHaveProperty('id');
     expect(response.body.name).toStrictEqual('some tag');
   });
+
+  it('should not create a tag with invalid tag name', async () => {
+    const token = generateToken(userId);
+
+    const response = await request(app)
+      .post('/tags')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ name: 's' });
+
+    expect(response.status).toBe(400);
+
+    expect(response.body.issues[0].code).toBe('too_small');
+  });
 });
