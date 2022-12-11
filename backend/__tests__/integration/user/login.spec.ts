@@ -60,4 +60,10 @@ describe('Authenticate a user', () => {
 
     expect(response.body.message).toBe('Email or password incorrect');
   });
+
+  it('should not be to access private routes without jwt token', async () => {
+    const response = await request(app).put('/users/someId');
+
+    expect(response.status).toBe(401);
+  });
 });
