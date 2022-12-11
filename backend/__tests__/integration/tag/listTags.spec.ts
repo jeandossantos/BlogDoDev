@@ -1,10 +1,7 @@
-import jwt from 'jsonwebtoken';
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import request from 'supertest';
 import { Client } from 'pg';
 
-import { UserRepository } from './../../../src/app/user/UserRepository';
-import { UserService } from './../../../src/app/user/UserService';
 import { app } from '../../../src';
 import { prisma } from '../../../src/connection/prisma';
 
