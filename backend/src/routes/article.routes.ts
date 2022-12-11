@@ -13,4 +13,8 @@ routes.post('/articles', (req, res) => {
   return articleController.store(req, res);
 });
 
+routes.delete('/articles/:articleId', (req, res) => {
+  return articleController.destroy(req, res);
+});
+
 export { routes };

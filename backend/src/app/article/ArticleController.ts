@@ -18,4 +18,12 @@ export class ArticleController {
 
     return res.status(201).json(article);
   }
+
+  async destroy(req: Request, res: Response) {
+    const { articleId } = req.params;
+
+    const article = await this.articleService.remove(articleId);
+
+    return res.send();
+  }
 }
