@@ -27,9 +27,9 @@ model Article {
   description String?
   imageUrl    String?
   content     String
-  authorId    String
+  authorId    String?
 
-  author User @relation(fields: [authorId], references: [id])
+  author User? @relation(fields: [authorId], references: [id], onDelete: SetNull, onUpdate: SetNull)
 
   tags Tag[]
 
