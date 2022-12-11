@@ -26,4 +26,12 @@ export class ArticleController {
 
     return res.send();
   }
+
+  async show(req: Request, res: Response) {
+    const { articleId } = req.params;
+
+    const article = await this.articleService.findById(articleId);
+
+    return res.json(article);
+  }
 }

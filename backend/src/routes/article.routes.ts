@@ -17,4 +17,8 @@ routes.delete('/articles/:articleId', (req, res) => {
   return articleController.destroy(req, res);
 });
 
+routes.get('/articles/:articleId', (req, res) => {
+  return articleController.show(req, res);
+});
+
 export { routes };
