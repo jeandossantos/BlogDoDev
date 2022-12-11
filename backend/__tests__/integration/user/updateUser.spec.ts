@@ -1,29 +1,37 @@
+import { describe, expect, test } from '@jest/globals';
 import { Client } from 'pg';
 import request from 'supertest';
+
+import { UserService } from './../../../src/app/user/UserService';
+import { UserRepository } from './../../../src/app/user/UserRepository';
 import { app } from '../../../src';
 import { prisma } from '../../../src/connection/prisma';
 
-let user;
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+});
 
 beforeAll(async () => {
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-  });
-
   await client.connect();
-  await client.query('DELETE FROM users');
+  await client.query('delete from users');
   await client.end();
 });
 
+async function createUser(email: string) {
+  const userRepository = new UserRepository();
+  const userService = new UserService(userRepository);
+
+  return userService.create({
+    username: 'my user test',
+    email,
+    password: 'password',
+    confirmPassword: 'password',
+  });
+}
+
 describe('update user', () => {
-  it('should update user', async () => {
-    user = await prisma.user.create({
-      data: {
-        username: 'user to be updated',
-        email: 'user-updateUSer@example.com',
-        password: 'password',
-      },
-    });
+  test('should update user', async () => {
+    const user = await createUser('update-user-1@test.com');
 
     const response = await request(app).put(`/users/${user.id}`).send({
       username: 'Updated user',
@@ -37,7 +45,9 @@ describe('update user', () => {
     expect(updatedUser?.username).toBe('Updated user');
   });
 
-  it('should not update user if username is too small', async () => {
+  test('should not update user if username is too small', async () => {
+    const user = await createUser('update-user-2@test.com');
+
     const response = await request(app).put(`/users/${user.id}`).send({
       username: '0',
     });

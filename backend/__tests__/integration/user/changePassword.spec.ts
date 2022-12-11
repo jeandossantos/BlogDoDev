@@ -1,30 +1,37 @@
-import { Client } from 'pg';
+import { describe, expect, test } from '@jest/globals';
 import request from 'supertest';
-import { app } from '../../../src';
-import { prisma } from '../../../src/connection/prisma';
+import { Client } from 'pg';
 
-let user;
-
-beforeAll(async () => {
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-  });
-
-  await client.connect();
-  await client.query('DELETE FROM users');
-  await client.end();
-
-  user = await prisma.user.create({
-    data: {
-      username: 'user to be updated',
-      email: 'changePassword@example.com',
-      password: 'password',
-    },
-  });
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
 });
 
+beforeAll(async () => {
+  await client.connect();
+  await client.query('delete from users');
+  await client.end();
+});
+
+import { UserService } from './../../../src/app/user/UserService';
+import { UserRepository } from './../../../src/app/user/UserRepository';
+import { app } from '../../../src';
+
+async function createUser(email: string) {
+  const userRepository = new UserRepository();
+  const userService = new UserService(userRepository);
+
+  return userService.create({
+    username: 'my user test',
+    email,
+    password: 'password',
+    confirmPassword: 'password',
+  });
+}
+
 describe('Should change the password of the user', () => {
-  it('should change the password', async () => {
+  test('should change the password', async () => {
+    const user = await createUser('change-password-1@test.com');
+
     const response = await request(app)
       .patch(`/users/${user.id}/updatePassword`)
       .send({
@@ -34,7 +41,9 @@ describe('Should change the password of the user', () => {
     expect(response.statusCode).toBe(200);
   });
 
-  it('should not change the password if too small', async () => {
+  test('should not change the password if too small', async () => {
+    const user = await createUser('change-password-2@test.com');
+
     const response = await request(app)
       .patch(`/users/${user.id}/updatePassword`)
       .send({
