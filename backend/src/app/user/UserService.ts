@@ -36,7 +36,7 @@ export class UserService {
       password: encryptPassword(password),
     });
 
-    const token = jwt.sign({ id: user.id }, 'secret', {
+    const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY!, {
       subject: user.id,
     });
 
@@ -60,7 +60,7 @@ export class UserService {
 
     if (!isMatch) throw new CustomException('Email or password incorrect');
 
-    const token = jwt.sign({ id: user.id }, 'secret', {
+    const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY!, {
       subject: user.id,
     });
 
