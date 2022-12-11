@@ -20,4 +20,8 @@ routes.get('/tags', (req, res) => {
   return tagController.index(req, res);
 });
 
+routes.delete('/tags/tagId', (req, res) => {
+  return tagController.index(req, res);
+});
+
 export { routes };
