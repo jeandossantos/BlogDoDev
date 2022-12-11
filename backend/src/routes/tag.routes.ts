@@ -21,8 +21,8 @@ routes.get('/tags', (req, res) => {
   return tagController.index(req, res);
 });
 
-routes.delete('/tags/tagId', ensureAuthenticated, (req, res) => {
-  return tagController.index(req, res);
+routes.delete('/tags/:tagId', ensureAuthenticated, (req, res) => {
+  return tagController.destroy(req, res);
 });
 
 export { routes };
