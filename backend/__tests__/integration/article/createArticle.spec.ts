@@ -105,4 +105,22 @@ describe('Create article', () => {
 
     expect(response.body.issues[0].code).toBe('too_small');
   });
+
+  it('should not create article with no tag', async () => {
+    const token = generateToken(userId);
+
+    const response = await request(app)
+      .post('/articles')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        authorId: userId,
+        title: 'my title',
+        description: 'some description',
+        content:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
+        tags: ['no-tag'],
+      });
+
+    expect(response.body.issues[0].message).toBe('Invalid uuid');
+  });
 });
