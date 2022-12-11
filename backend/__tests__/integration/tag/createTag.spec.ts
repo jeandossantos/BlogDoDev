@@ -17,6 +17,7 @@ beforeAll(async () => {
 
   await client.connect();
   await client.query('delete from tags');
+  await client.query('delete from users');
   await client.end();
 
   userId = (await createUser('user-test-tag@test.com')).id!;
@@ -31,12 +32,6 @@ async function createUser(email: string) {
     email,
     password: 'password',
     confirmPassword: 'password',
-  });
-}
-
-async function createTag(tagName: string) {
-  return await prisma.tag.create({
-    data: { name: tagName },
   });
 }
 
