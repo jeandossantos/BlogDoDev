@@ -5,14 +5,14 @@ export class ArticleController {
   constructor(private articleService: ArticleService) {}
 
   async store(req: Request, res: Response) {
-    const { title, description, content, authorId, imageUrl, tags } = req.body;
+    const { title, description, content, authorId, tags } = req.body;
 
     const article = await this.articleService.create({
       title,
       description,
       content,
       authorId,
-      imageUrl,
+      imageUrl: req.file?.filename,
       tags,
     });
 
@@ -56,14 +56,14 @@ export class ArticleController {
   }
 
   async update(req: Request, res: Response) {
-    const { title, description, content, imageUrl, tags } = req.body;
+    const { title, description, content, tags } = req.body;
     const articleId = req.params.articleId;
 
     const article = await this.articleService.update({
       title,
       description,
       content,
-      imageUrl,
+      imageUrl: req.file?.filename,
       tags,
       id: articleId,
     });
