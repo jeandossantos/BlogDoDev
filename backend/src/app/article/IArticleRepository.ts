@@ -11,7 +11,7 @@ export interface IArticle {
   content: string;
   createdAt?: Date;
   updatedAt?: Date;
-  authorId: string;
+  authorId: string | null;
   tags: Tag[];
 }
 
