@@ -13,6 +13,10 @@ routes.post('/articles', (req, res) => {
   return articleController.store(req, res);
 });
 
+routes.get('/articles', (req, res) => {
+  return articleController.index(req, res);
+});
+
 routes.delete('/articles/:articleId', (req, res) => {
   return articleController.destroy(req, res);
 });

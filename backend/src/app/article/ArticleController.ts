@@ -19,10 +19,21 @@ export class ArticleController {
     return res.status(201).json(article);
   }
 
+  async index(req: Request, res: Response) {
+    const { search = '', page = 1 } = req.query;
+
+    const articles = await this.articleService.list(
+      Number(page),
+      String(search)
+    );
+
+    return res.json(articles);
+  }
+
   async destroy(req: Request, res: Response) {
     const { articleId } = req.params;
 
-    const article = await this.articleService.remove(articleId);
+    await this.articleService.remove(articleId);
 
     return res.send();
   }
