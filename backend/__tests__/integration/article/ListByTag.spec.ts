@@ -36,14 +36,8 @@ async function createUser(email: string) {
   });
 }
 
-const generateToken = function (id: string) {
-  return jwt.sign({ id: id }, process.env.SECRET_KEY!);
-};
-
 describe('List articles', () => {
   it('should list articles by tag id', async () => {
-    const token = generateToken(userId);
-
     const tag = await prisma.tag.create({
       data: { name: 'someTag-test-1' },
     });

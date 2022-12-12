@@ -36,11 +36,7 @@ async function createUser(email: string) {
   });
 }
 
-const generateToken = function (id: string) {
-  return jwt.sign({ id: id }, process.env.SECRET_KEY!);
-};
-
-describe('Remove article', () => {
+describe('find an article', () => {
   it('should fetch an article', async () => {
     const tag = await prisma.tag.create({
       data: { name: 'some tag again' },
@@ -59,11 +55,7 @@ describe('Remove article', () => {
       },
     });
 
-    const token = generateToken(userId);
-
-    const response = await request(app)
-      .get('/articles/' + article.id)
-      .set('Authorization', `bearer ${token}`);
+    const response = await request(app).get('/articles/' + article.id);
 
     expect(response.status).toBe(200);
     expect(response.body.title).toBe(article.title);
