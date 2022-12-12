@@ -17,12 +17,16 @@ routes.get('/articles', (req, res) => {
   return articleController.index(req, res);
 });
 
-routes.delete('/articles/:articleId', (req, res) => {
-  return articleController.destroy(req, res);
-});
-
 routes.get('/articles/:articleId', (req, res) => {
   return articleController.show(req, res);
+});
+
+routes.get('/tags/:tagId/articles', (req, res) => {
+  return articleController.findByTag(req, res);
+});
+
+routes.delete('/articles/:articleId', (req, res) => {
+  return articleController.destroy(req, res);
 });
 
 routes.put('/articles/:articleId', (req, res) => {

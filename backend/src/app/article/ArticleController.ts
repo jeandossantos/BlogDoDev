@@ -46,6 +46,15 @@ export class ArticleController {
     return res.json(article);
   }
 
+  async findByTag(req: Request, res: Response) {
+    const { tagId } = req.params;
+    const page = Number(req.query.page) || 1;
+
+    const articles = await this.articleService.findByTagId(page, tagId);
+
+    return res.json(articles);
+  }
+
   async update(req: Request, res: Response) {
     const { title, description, content, imageUrl, tags } = req.body;
     const articleId = req.params.articleId;
