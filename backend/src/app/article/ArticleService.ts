@@ -74,14 +74,36 @@ export class ArticleService {
   }
 
   async list(page?: number, search?: string) {
-    const articles = await this.articleRepository.find(page, search);
+    const { articles, count, limit } = await this.articleRepository.find(
+      page,
+      search
+    );
 
-    return articles;
+    const articlesWithDescription = articles.map((article) => {
+      if (!article.description) {
+        article.description = article.content.slice(0, 200);
+      }
+
+      return article;
+    });
+
+    return { articles: articlesWithDescription, count, limit };
   }
 
   async findByTagId(page: number, tagId: string) {
-    const result = this.articleRepository.findByTag(page, tagId);
+    const { articles, count, limit } = await this.articleRepository.findByTag(
+      page,
+      tagId
+    );
 
-    return result;
+    const articlesWithDescription = articles.map((article) => {
+      if (!article.description) {
+        article.description = article.content.slice(0, 200);
+      }
+
+      return article;
+    });
+
+    return { articles: articlesWithDescription, count, limit };
   }
 }

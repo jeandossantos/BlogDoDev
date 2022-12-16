@@ -16,7 +16,7 @@ export interface IArticle {
 }
 
 export type PaginatedArticleList = {
-  articles: Omit<IArticle, 'content'>[];
+  articles: IArticle[];
   count: number;
   limit: number;
 };
