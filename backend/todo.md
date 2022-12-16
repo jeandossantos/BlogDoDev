@@ -5,12 +5,12 @@
   - [x] **usuário deve ter username, email, password, imageUrl**
   - [x] **usuário com email já cadastrado não pode ser criado**
 
-- [ ] <b style="color: blue">Login método</b>
-  - [ ] **Retorno deve conter o token**
+- [x] <b style="color: blue">Login método</b>
+  - [x] **Retorno deve conter o token**
 - [x] <b style="color: blue">Atualizar usuário método</b>
-- [ ] <b style="color: blue">Alterar senha do usuário método</b>
-  - [ ] **Nova senha deve ser criptografada antes de ser salva**
-- [ ] <b style="color: blue">Deletar usuário método</b>
+- [x] <b style="color: blue">Alterar senha do usuário método</b>
+  - [x] **Nova senha deve ser criptografada antes de ser salva**
+- [x] <b style="color: blue">Deletar usuário método</b>
 
 ### Tag
 
