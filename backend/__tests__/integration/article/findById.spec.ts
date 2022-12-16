@@ -60,5 +60,6 @@ describe('find an article', () => {
     expect(response.status).toBe(200);
     expect(response.body.title).toBe(article.title);
     expect(response.body.content).toBe(article.content);
+    expect(response.body.description).toBe(article.description);
   });
 });
