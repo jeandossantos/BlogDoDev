@@ -40,7 +40,13 @@ export class ArticleRepository implements IArticleRepository {
     const limit = 4;
     page = page || 1;
 
-    const count = await prisma.article.count({});
+    const count = await prisma.article.count({
+      where: {
+        title: {
+          startsWith: search,
+        },
+      },
+    });
 
     const articles = await prisma.article.findMany({
       where: {
