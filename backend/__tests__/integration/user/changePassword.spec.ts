@@ -43,6 +43,7 @@ describe('Should change the password of the user', () => {
       .patch(`/users/${user.id}/updatePassword`)
       .set('Authorization', `bearer ${token}`)
       .send({
+        oldPassword: 'password',
         newPassword: 'newPassword',
       });
 
@@ -58,6 +59,7 @@ describe('Should change the password of the user', () => {
       .patch(`/users/${user.id}/updatePassword`)
       .set('Authorization', `bearer ${token}`)
       .send({
+        oldPassword: 'password',
         newPassword: '123',
       });
 

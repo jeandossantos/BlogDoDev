@@ -18,6 +18,7 @@ describe('Change user password', () => {
   it('should change user password successfully', async () => {
     const result = await userService.changePassword(
       user.id,
+      'changePasswordTest',
       'userPasswordChanged'
     );
 
@@ -25,7 +26,11 @@ describe('Change user password', () => {
   });
 
   it('should not change user password if the password is less then 6 characters', async () => {
-    const result = userService.changePassword(user.id, '12345');
+    const result = userService.changePassword(
+      user.id,
+      'changePasswordTest',
+      '12345'
+    );
 
     await expect(result).rejects.toThrow(ZodError);
   });
