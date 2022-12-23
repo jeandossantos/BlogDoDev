@@ -44,11 +44,11 @@ export class UserController {
   }
 
   async changePassword(req: Request, res: Response) {
-    const { newPassword } = req.body;
+    const { oldPassword, newPassword } = req.body;
 
     const userId = req.params.userId;
 
-    await this.userService.changePassword(userId, newPassword);
+    await this.userService.changePassword(userId, oldPassword, newPassword);
 
     return res.status(200).send();
   }

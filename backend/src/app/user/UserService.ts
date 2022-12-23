@@ -84,8 +84,16 @@ export class UserService {
     return user;
   }
 
-  async changePassword(id: string, newPassword: string) {
+  async changePassword(id: string, oldPassword: string, newPassword: string) {
     newPassword = z.string().min(6).parse(newPassword);
+
+    const user = await this.userRepository.findById(id);
+
+    if (!user) throw new CustomException('User not found');
+
+    const isMatch = compareSync(oldPassword, user.password);
+
+    if (!isMatch) throw new CustomException('Incorrect password');
 
     const passwordHash = encryptPassword(newPassword);
 
