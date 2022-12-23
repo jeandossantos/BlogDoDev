@@ -3,7 +3,7 @@ import 'dotenv/config';
 
 import swaggerUi from 'swagger-ui-express';
 import path from 'node:path';
-
+import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
 import { CustomException } from './exceptions/CustomException';
 import { ZodError } from 'zod';
@@ -18,6 +18,7 @@ import swaggerDocument from './swagger.json';
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(helmet());
 app.use('/static', express.static(path.resolve(__dirname, '..', 'public')));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
