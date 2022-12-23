@@ -34,6 +34,12 @@ export class UserRepoInMemory implements IUserRepository {
     return user || null;
   }
 
+  async findById(id: string) {
+    const user = User.find((user) => user.id === id);
+
+    return user || null;
+  }
+
   async create(user: IUser): Promise<IUser> {
     user.id = randomUUID();
 

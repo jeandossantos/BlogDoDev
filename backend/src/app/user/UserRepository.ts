@@ -22,6 +22,14 @@ export class UserRepository implements IUserRepository {
     return user;
   }
 
+  async findById(id: string): Promise<IUser | null> {
+    const user = await prisma.user.findFirst({
+      where: { id },
+    });
+
+    return user;
+  }
+
   async remove(id: string): Promise<string> {
     const user = await prisma.user.delete({
       where: { id },
