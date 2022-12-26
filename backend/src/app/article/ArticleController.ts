@@ -13,7 +13,7 @@ export class ArticleController {
       content,
       authorId,
       imageUrl: req.file?.filename,
-      tags,
+      tags: typeof tags === 'string' ? [tags] : tags,
     });
 
     return res.status(201).json(article);
@@ -51,6 +51,15 @@ export class ArticleController {
     const page = Number(req.query.page) || 1;
 
     const articles = await this.articleService.findByTagId(page, tagId);
+
+    return res.json(articles);
+  }
+
+  async findByUser(req: Request, res: Response) {
+    const userId = req.params.userId;
+    const page = Number(req.query.page) || 1;
+
+    const articles = await this.articleService.findByUserId(page, userId);
 
     return res.json(articles);
   }
