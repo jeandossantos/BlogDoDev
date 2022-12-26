@@ -15,6 +15,7 @@ type LoginProps = {
 
 type ChangeUserPassword = {
   userId: string;
+  oldPassword: string;
   newPassword: string;
 };
 
@@ -47,17 +48,17 @@ export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    setLoading(true);
     const data = localStorage.getItem('@blog:payload');
 
     if (data) {
-      setUser(JSON.parse(data));
-      const payload: User = JSON.parse(data);
+      const payload = JSON.parse(data);
 
-      api.defaults.headers.common.authorization = `bearer ${payload?.token}`;
+      setUser(payload);
+
+      api.defaults.headers.common['Authorization'] = `bearer ${payload?.token}`;
 
       setLoading(false);
     }
@@ -143,10 +144,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function changeUserPassword({
     userId,
+    oldPassword,
     newPassword,
   }: ChangeUserPassword) {
     try {
       await api.patch(`/users/${userId}/updatePassword`, {
+        oldPassword,
         newPassword,
       });
     } catch (error) {
