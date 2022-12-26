@@ -30,3 +30,7 @@ body {
   @apply placeholder:font-medium rounded
   border-zinc-500 placeholder:text-zinc-500 placeholder:text-xs text-zinc-100 border-none outline-none focus:outline-zinc-500 focus:border-zinc-500 outline-offset-0;
 }
+
+.article-content p {
+  @apply mt-2;
+}
