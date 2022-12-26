@@ -33,6 +33,10 @@ routes.get('/tags/:tagId/articles', (req, res) => {
   return articleController.findByTag(req, res);
 });
 
+routes.get('/users/:userId/articles', (req, res) => {
+  return articleController.findByUser(req, res);
+});
+
 routes.delete('/articles/:articleId', ensureAuthenticated, (req, res) => {
   return articleController.destroy(req, res);
 });

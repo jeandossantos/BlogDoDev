@@ -106,4 +106,21 @@ export class ArticleService {
 
     return { articles: articlesWithDescription, count, limit };
   }
+
+  async findByUserId(page: number, userId: string) {
+    const { articles, count, limit } = await this.articleRepository.findByUser(
+      page,
+      userId
+    );
+
+    const articlesWithDescription = articles.map((article) => {
+      if (!article.description) {
+        article.description = article.content.slice(0, 264);
+      }
+
+      return article;
+    });
+
+    return { articles: articlesWithDescription, count, limit };
+  }
 }

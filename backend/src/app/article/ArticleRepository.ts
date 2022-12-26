@@ -1,5 +1,6 @@
 import { prisma } from '../../connection/prisma';
 import {
+  FindByIdProps,
   IArticle,
   IArticleRepository,
   PaginatedArticleList,
@@ -67,13 +68,19 @@ export class ArticleRepository implements IArticleRepository {
     return { articles, count, limit };
   }
 
-  async findById(articleId: string): Promise<IArticle | null> {
+  async findById(articleId: string): Promise<FindByIdProps | null> {
     const article = await prisma.article.findUnique({
       where: {
         id: articleId,
       },
       include: {
         tags: true,
+        author: {
+          select: {
+            id: true,
+            username: true,
+          },
+        },
       },
     });
 
@@ -103,6 +110,7 @@ export class ArticleRepository implements IArticleRepository {
         description,
         content,
         imageUrl,
+        updatedAt: new Date(),
         tags: {
           connect: tags,
         },
@@ -133,6 +141,33 @@ export class ArticleRepository implements IArticleRepository {
             id: tagId,
           },
         },
+      },
+      include: { tags: true },
+      take: limit,
+      skip: page * limit - limit,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return { articles, count, limit };
+  }
+
+  async findByUser(
+    page: number,
+    userId: string
+  ): Promise<PaginatedArticleList> {
+    const limit = 4;
+
+    const count = await prisma.article.count({
+      where: {
+        authorId: userId,
+      },
+    });
+
+    const articles = await prisma.article.findMany({
+      where: {
+        authorId: userId,
       },
       include: { tags: true },
       take: limit,

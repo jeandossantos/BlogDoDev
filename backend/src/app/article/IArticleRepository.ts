@@ -21,11 +21,19 @@ export type PaginatedArticleList = {
   limit: number;
 };
 
+export type FindByIdProps = Omit<IArticle, 'authorId'> & {
+  author: {
+    id: string;
+    username: string;
+  } | null;
+};
+
 export interface IArticleRepository {
   create(article: IArticle): Promise<IArticle>;
   find(page?: number, search?: string): Promise<PaginatedArticleList>;
-  findById(articleId: string): Promise<IArticle | null>;
+  findById(articleId: string): Promise<FindByIdProps | null>;
   remove(articleId: string): Promise<void>;
   update(article: Omit<IArticle, 'authorId'>): Promise<IArticle>;
   findByTag(page: number, tagId: string): Promise<PaginatedArticleList>;
+  findByUser(page: number, userId: string): Promise<PaginatedArticleList>;
 }
