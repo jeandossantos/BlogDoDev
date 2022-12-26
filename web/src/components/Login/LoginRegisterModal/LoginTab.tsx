@@ -1,9 +1,9 @@
 import { TfiEmail } from 'react-icons/tfi';
 import { AiOutlineLoading, AiOutlineLock } from 'react-icons/ai';
 
-import { InputIcon } from './InputIcon';
+import { InputIcon } from '../../InputIcon';
 import { FaGoogle } from 'react-icons/fa';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../../hooks/useAuth';
 import { FormEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
 

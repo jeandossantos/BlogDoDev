@@ -2,6 +2,7 @@ import { Dialog } from '@headlessui/react';
 import { FormEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiOutlineLoading, AiOutlineLock } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 import { InputIcon } from '../../components/InputIcon';
 import { Label } from '../../components/Label';
 import { useAuth } from '../../hooks/useAuth';
@@ -15,7 +16,8 @@ export function ChangeUserPasswordModal({
   isChangeUserPasswordModalOpen,
   handleIsChangeUserPasswordModalOpen,
 }: ChangeUserPasswordModalProps) {
-  const { changeUserPassword, user } = useAuth();
+  const { changeUserPassword, user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState('');
@@ -52,10 +54,17 @@ export function ChangeUserPasswordModal({
     try {
       await changeUserPassword({
         userId: user?.id!,
+        oldPassword: password,
         newPassword,
       });
 
       toast.success('senha alterado com sucesso!');
+
+      const timerId = setTimeout(() => {
+        logout();
+        navigate('/');
+        clearTimeout(timerId);
+      }, 2000);
 
       setPassword('');
       setNewPassword('');

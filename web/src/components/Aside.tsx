@@ -1,15 +1,23 @@
 import { useEffect, useState } from 'react';
-import { api } from '../services/api';
+import { Link, useParams } from 'react-router-dom';
+import { useTag } from '../hooks/useTag';
+
+interface ITag {
+  id: string;
+  name: string;
+}
 
 export function Aside() {
-  const [tags, setTags] = useState([]);
+  const { listTags, setTagId } = useTag();
+  const [tags, setTags] = useState<ITag[]>([]);
 
   useEffect(() => {
     getTags();
   }, []);
 
   async function getTags() {
-    api.get('/tags').then((response) => setTags(response.data));
+    const rs = await listTags();
+    setTags(rs);
   }
 
   return (
@@ -21,13 +29,15 @@ export function Aside() {
       <div className="flex gap-2 flex-wrap  px-5">
         {tags.map(({ id, name }) => {
           return (
-            <a
+            <Link
+              onClick={(e) => setTagId(id)}
+              to={`/articles/tag/${id}`}
               className="text-xs font-medium  bg-zinc-100 rounded-sm text-zinc-900 
           px-2 py-1"
               key={id}
             >
               {name}
-            </a>
+            </Link>
           );
         })}
       </div>

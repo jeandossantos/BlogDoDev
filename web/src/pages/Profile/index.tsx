@@ -100,7 +100,7 @@ export function Profile() {
         <Label htmlFor="email" label="E-mail:" />
         <InputIcon
           icon={TfiEmail}
-          additionalCss="bg-zinc-900 disabled:opacity-75"
+          additionalCss="bg-zinc-[#1717A] disabled:opacity-75"
           type="text"
           id="email"
           value={email}
@@ -120,7 +120,7 @@ export function Profile() {
           )}
         </button>
       </form>
-      <div className="flex justify-between w-[300px]">
+      <div className="flex justify-between w-[900px]">
         <button
           onClick={() => setIsChangeUserPasswordModalOpen(true)}
           type="submit"
@@ -141,18 +141,18 @@ export function Profile() {
         >
           <RiShutDownLine size={25} /> Sair
         </button>
-      </div>
 
-      <button
-        onClick={() => handleIsRemoveUserModalOpen(true)}
-        type="submit"
-        className="w-36 bg-zinc-700 text-zinc-100 
+        <button
+          onClick={() => handleIsRemoveUserModalOpen(true)}
+          type="submit"
+          className="w-36 bg-zinc-700 text-zinc-100 
             rounded font-bold  h-12 text-center
             mt-6 hover:bg-red-danger-hover
             flex justify-center gap-2 items-center"
-      >
-        <FaTrash /> Excluir Conta
-      </button>
+        >
+          <FaTrash /> Excluir Conta
+        </button>
+      </div>
 
       <ChangeUserPasswordModal
         isChangeUserPasswordModalOpen={isChangeUserPasswordModalOpen}

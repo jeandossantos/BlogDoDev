@@ -2,9 +2,9 @@ import { TfiEmail } from 'react-icons/tfi';
 import { FiUser } from 'react-icons/fi';
 import { AiOutlineLoading, AiOutlineLock } from 'react-icons/ai';
 
-import { InputIcon } from './InputIcon';
+import { InputIcon } from '../../InputIcon';
 import { FormEvent, useState } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../../hooks/useAuth';
 import { toast } from 'react-hot-toast';
 
 interface TabsModalProps {
