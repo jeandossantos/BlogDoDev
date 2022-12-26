@@ -7,7 +7,7 @@ import Routes from './components/Routes';
 
 function App() {
   return (
-    <div className="app max-w-[1344px]  mx-auto  grid grid-rows-[5rem_1fr_5rem]  grid-cols-[1fr_20rem] rounded-md  border-4 border-zinc-500">
+    <div className="app max-w-[1444px]  mx-auto  grid grid-rows-[5rem_1fr_5rem]  grid-cols-[1fr_20rem] rounded-md  border-4 border-zinc-500">
       <Header />
       <Routes />
       <Aside />
