@@ -1,4 +1,4 @@
-# Mini Blog
+# Blog do Dev
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/jeandossantos/TodoList-TS/blob/master/LICENSE)
 
@@ -77,6 +77,6 @@ npm run dev
 
 ## 📝 Licença
 
-Esse projeto está sob a licença MIT. Veja o arquivo [![NPM](https://img.shields.io/npm/l/react)](https://github.com/jeandossantos/my_blog/blob/master/LICENSE) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo [![NPM](https://img.shields.io/npm/l/react)](https://github.com/jeandossantos/BlogDoDev/blob/master/LICENSE) para mais detalhes.
 
 <p align="center">Feito com 💜 por Jean dos Santos</p>
