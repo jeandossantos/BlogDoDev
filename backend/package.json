@@ -10,7 +10,8 @@
     "migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
     "studio": "dotenv -e .env.development npx prisma studio",
-    "studio:test": "dotenv -e .env.test npx prisma studio"
+    "studio:test": "dotenv -e .env.test npx prisma studio",
+    "seed": "dotenv -e .env.development ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
