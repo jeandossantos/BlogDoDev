@@ -99,14 +99,6 @@ export function LoginTab({ setIsOpen }: LoginTabProps) {
           'Entrar'
         )}
       </button>
-      <p className="text-center my-3">Ou</p>
-      {/* <button
-        type="submit"
-        className="flex  justify-center items-center gap-2 w-full bg-red-google 
-        text-zinc-100 rounded font-bold  h-12 text-center hover:bg-red-700"
-      >
-        <FaGoogle /> Login com google
-      </button> */}
     </form>
   );
 }
