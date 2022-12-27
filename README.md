@@ -7,10 +7,13 @@
 Pequeno site de criação de artigo de Devs para Devs.
 
 ## Layout da Aplicação
-
+### Home página
 ![Web 1](https://github.com/jeandossantos/assets/blob/master/blogDoDev/Home.png)
+### Artigo página
 ![Web 2](https://github.com/jeandossantos/assets/blob/master/blogDoDev/Article%20Page.png)
+### Modal de Login
 ![Web 3](https://github.com/jeandossantos/assets/blob/master/blogDoDev/loginModal.png)
+### Modal Crie sua conta
 ![Web 4](https://github.com/jeandossantos/assets/blob/master/blogDoDev/registerModal.png)
 
 ## 🧪 Tecnologias utilizadas
@@ -71,6 +74,6 @@ npm run dev
 
 ## 📝 Licença
 
-Esse projeto está sob a licença MIT. Veja o arquivo [![NPM](https://img.shields.io/npm/l/react)](https://github.com/jeandossantos/TodoList-TS/blob/master/LICENSE) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo [![NPM](https://img.shields.io/npm/l/react)](https://github.com/jeandossantos/my_blog/blob/master/LICENSE) para mais detalhes.
 
 <p align="center">Feito com 💜 por Jean dos Santos</p>
