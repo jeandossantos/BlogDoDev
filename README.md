@@ -7,14 +7,17 @@
 Pequeno site de criação de artigo de Devs para Devs.
 
 ## Layout da Aplicação
-### Home página
+### Página Home
 ![Web 1](https://github.com/jeandossantos/assets/blob/master/blogDoDev/Home.png)
-### Artigo página
+### Página de Artigo
 ![Web 2](https://github.com/jeandossantos/assets/blob/master/blogDoDev/Article%20Page.png)
 ### Modal de Login
 ![Web 3](https://github.com/jeandossantos/assets/blob/master/blogDoDev/loginModal.png)
 ### Modal Crie sua conta
 ![Web 4](https://github.com/jeandossantos/assets/blob/master/blogDoDev/registerModal.png)
+### Página de Perfil
+![Web 4](https://github.com/jeandossantos/assets/blob/master/blogDoDev/Profile.png)
+
 
 ## 🧪 Tecnologias utilizadas
 
