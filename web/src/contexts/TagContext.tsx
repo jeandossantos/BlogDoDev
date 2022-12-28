@@ -9,6 +9,7 @@ interface ITag {
 type TagContextData = {
   listTags: () => Promise<ITag[]>;
   createTag: (name: string) => Promise<void>;
+  removeTag: (name: string) => Promise<void>;
   tagId: string;
   setTagId: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -35,8 +36,14 @@ export function TagProvider({ children }: TagProviderProps) {
     });
   }
 
+  async function removeTag(id: string) {
+    await api.delete(`/tags/${id}`);
+  }
+
   return (
-    <TagContext.Provider value={{ listTags, createTag, setTagId, tagId }}>
+    <TagContext.Provider
+      value={{ listTags, createTag, setTagId, tagId, removeTag }}
+    >
       {children}
     </TagContext.Provider>
   );

@@ -11,6 +11,8 @@ import { useTag } from '../../hooks/useTag';
 import { RemoveArticleModal } from './RemoveArticleModal';
 
 import Pagination from 'react-js-pagination';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { TagFormModal } from './TagFormModal';
 
 interface ITag {
   id: string;
@@ -52,6 +54,8 @@ export function ArticleForm() {
 
   const [isRemoveArticleModalOpen, setIsRemoveArticleModalOpen] =
     useState(false);
+
+  const [isTagModalOpen, setIsTagModalOpen] = useState(false);
 
   useEffect(() => {
     handleListTag();
@@ -117,9 +121,7 @@ export function ArticleForm() {
     setImageUrl(file);
   }
 
-  async function handleCreateArticle(e: FormEvent) {
-    e.preventDefault();
-
+  async function handleCreateArticle() {
     if (title.length < 2) {
       toast.error('Título do artigo deve ter pelo menos 2 caracteres!');
 
@@ -162,9 +164,7 @@ export function ArticleForm() {
     }
   }
 
-  async function handleUpdateArticle(e: FormEvent) {
-    e.preventDefault();
-
+  async function handleUpdateArticle() {
     if (title.length < 2) {
       toast.error('Título do artigo deve ter pelo menos 2 caracteres!');
 
@@ -263,10 +263,7 @@ export function ArticleForm() {
       </h1>
 
       <div className="flex justify-center">
-        <form
-          onSubmit={!articleId ? handleCreateArticle : handleUpdateArticle}
-          className="w-3/4 px-10"
-        >
+        <div className="w-3/4 px-10">
           <div className="flex flex-col">
             <label
               htmlFor="title"
@@ -346,6 +343,14 @@ export function ArticleForm() {
                 </label>
               );
             })}
+            <button
+              title="criar nova tag"
+              className="flex justify-center items-center bg-zinc-100 rounded h-5 w-5
+              hover:bg-zinc-200 ml-1"
+              onClick={() => setIsTagModalOpen(true)}
+            >
+              <AiOutlinePlus className="text-zinc-900 w-3" />
+            </button>
           </div>
 
           <div className="flex flex-wrap gap-2 mb-3">
@@ -359,7 +364,7 @@ export function ArticleForm() {
 
           <div className="flex  justify-center items-center gap-3">
             <button
-              type="submit"
+              onClick={!articleId ? handleCreateArticle : handleUpdateArticle}
               className="flex  justify-center items-center gap-2 w-[300px] bg-zinc-100 
         text-zinc-900 rounded font-bold  h-12 text-center hover:bg-zinc-200 cursor-pointer"
             >
@@ -375,7 +380,7 @@ export function ArticleForm() {
               Cancelar
             </button>
           </div>
-        </form>
+        </div>
       </div>
 
       <div className=" flex flex-col justify-center items-center">
@@ -473,6 +478,13 @@ export function ArticleForm() {
           hover:bg-zinc-700 cursor-pointer"
         />
       </div>
+
+      <TagFormModal
+        isOpen={isTagModalOpen}
+        setIsOpen={setIsTagModalOpen}
+        handleListTag={handleListTag}
+        tags={tags}
+      />
 
       <RemoveArticleModal
         articleId={articleTobeDeleted?.id!}
