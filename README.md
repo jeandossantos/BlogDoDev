@@ -32,6 +32,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Prisma.js
 - Autenticação JWT
 - SOLID
+- testes com jest e supertest
 
 ### Frontend
 
